@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Profile } from './profile.entity';
 
 // Aca creamos las tablas que se van a ver en nuestra base de datos
 // @column() nos permite indicarle a la base de datos de que tipo de dato es la tabla
@@ -19,4 +26,8 @@ export class User {
 
   @Column({ nullable: true })
   authStrategy: string;
+
+  @OneToOne(() => Profile)
+  @JoinColumn()
+  profile: Profile;
 }
