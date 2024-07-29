@@ -4,8 +4,10 @@ import {
   PrimaryGeneratedColumn,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { Profile } from './profile.entity';
+import { Post } from 'src/post/entities/post.entity';
 
 // Aca creamos las tablas que se van a ver en nuestra base de datos
 // @column() nos permite indicarle a la base de datos de que tipo de dato es la tabla
@@ -30,4 +32,7 @@ export class User {
   @OneToOne(() => Profile)
   @JoinColumn()
   profile: Profile;
+
+  @OneToMany(() => Post, (post) => post.author)
+  posts: Post[];
 }
