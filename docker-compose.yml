@@ -1,0 +1,5 @@
+services:
+  mysqldb:
+    image: mysqldb:latest
+    restart: always
+    

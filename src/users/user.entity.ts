@@ -7,7 +7,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { Profile } from './profile.entity';
-import { Post } from 'src/post/entities/post.entity';
+import { Post } from '../post/entities/post.entity';
 
 // Aca creamos las tablas que se van a ver en nuestra base de datos
 // @column() nos permite indicarle a la base de datos de que tipo de dato es la tabla
