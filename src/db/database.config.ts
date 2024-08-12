@@ -11,13 +11,14 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
 
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
-      type: 'mysql',
+      type: this.configService.get<any>('DB_TYPE'),
       host: this.configService.get<string>('DB_HOST'),
-      port: this.configService.get<number>('DB_PORT'),
+      port: this.configService.get<number>('DB_DOCKER_PORT'),
       username: this.configService.get<string>('DB_USERNAME'),
       password: this.configService.get<string>('DB_PASSWORD'),
       database: this.configService.get<string>('DB_NAME'),
       entities: [User, Post, Profile],
+      logging: true,
       synchronize: true,
     };
   }

@@ -1,5 +1,23 @@
+
 services:
   mysqldb:
-    image: mysqldb:latest
+    image: mysql:latest
     restart: always
-    
+    env_file:
+      - ./.env
+    ports:
+      -  $DB_LOCAL_PORT:$DB_DOCKER_PORT
+    environment:
+      - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
+      - MYSQL_DATABASE=$DB_NAME
+    volumes:
+      - ./db:/var/lib/mysql
+
+  api:
+    build: .
+    depends_on:
+      - mysqldb
+    links:
+      - mysqldb:mysql
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
