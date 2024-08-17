@@ -15,9 +15,9 @@ services:
 
   api:
     build: .
-    depends_on:
-      - mysqldb
     links:
       - mysqldb:mysql
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    depends_on:
+      - mysqldb
